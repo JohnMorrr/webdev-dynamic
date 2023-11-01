@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Majors List</title>
+	<title>College Majors</title>
 	<link rel="stylesheet" href="/css/foundation.css"/>
 	<script type="application/javascript" src="/js/jquery-3.6.1.min.js"></script>
 	<script type="application/javascript" src="/js/canvasjs-3/jquery.canvasjs.min.js"></script>
@@ -13,39 +13,57 @@
 
 <body style="background-color: darkgray;">
 	<div class="off-canvas-wrapper">
-		<div class="title-bar-left show-for-medium" style="text-align: center; background-color: #252627;">
-			<button class="button" type="button" data-toggle="offCanvasLeft" style="float: left;">
-				<span aria-hidden="true" style="color: white; font-size: 1.5rem;">Menu</span>
-			</button>
-			<hi style="text-align: center; font-size: 3; display: inline-block; margin: auto; width: auto;">College Major List</hi>
-		</div>"
-	</div>
-
-	<div class="title-bar show-for-small-only">
-		<div class="title-bar-top show-for-small-only" style="text-align: center; display: block; margin: auto;">
-		<button class="button" type="button" data-toggle="offCanvasTop" style="margin: auto; display: block; width: auto;">
-			<span aria-hidden="true" style="color: white; font-size: 1.5rem;">Menu</span>
-		</button>
-		<ul class="vertical menu">
-			<li><a href="/">Home</a></li>
-			<li><a href="/college_majors/">College Majors</a></li>
-			<li><a href="/all_ages/">All Ages</a></li>
-			<li><a href="/grad_students/">Grad Students</a></li>
-		</ul>
+		<div class="title-bar show-for-medium" style="background-color: #252627;">
+			<div class="title-bar-left show-for-medium" style="text-align: center; background-color: #252627;">
+				<button class="button" type="button" data-toggle="offCanvasLeft" style="float: left;">
+					<span aria-hidden="true" style="color: white; font-size: 1.5rem;">Menu</span>
+				</button>
+				<hi style="text-align: center; font-size: 3; display: inline-block; margin: auto; width: auto;">College Majors' Information List</hi>
+			</div>"
 		</div>
 
-		<div class="off-canvas-position-top show-for-small-only" id="offCanvasTop" data-transition="push" data-off-canvas>
+		<div class="title-bar show-for-small-only">
+			<div class="title-bar-top show-for-small-only" style="text-align: center; display: block; margin: auto;">
+				<button class="button" type="button" data-toggle="offCanvasTop" style="margin: auto; display: block; width: auto;">
+					<span aria-hidden="true" style="color: white; font-size: 1.5rem;">Menu</span>
+				</button>
+				<ul class="horizontal menu">
+					<li><a href="/">Home</a></li>
+					<li><a href="/major/major_category">College Majors by Category</a></li>
+					<li><a href="/major/median">College Majors by Median</a></li>
+					<li><a href="/major/p25th">College Majors by 25th Percentile</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+		
+
+	<div class="off-canvas-wrapper">
+		<div class="off-canvas position-left show-for-medium" id="offCanvasLeft" data-transition="overlap" data-off-canvas>
+			<button class="button" aria-label="Close menu" type="button" data-close>
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<ul class="vertical menu">
+				<li><a href="/">Home</a></li>
+				<li><a href="/major/major_category">College Majors by Category</a></li>
+				<li><a href="/major/median">College Majors by Median</a></li>
+				<li><a href="/major/p25th">College Majors by 25th Percentile</a></li>
+			</ul>
+		</div>
+
+		<div class="off-canvas position-top show-for-small-only" id="offCanvasTop" data-transition="push" data-off-canvas>
 			<button class="button" aria-label="Close menu" type="button" data-close>
 				<span aria-hidden="true">&times;</span>
 			</button>
 			<ul class="horizontal menu">
 				<li><a href="/">Home</a></li>
-				<li><a href="/college_majors/">College Majors by Category</a></li>
-				<li><a href="/all_ages/">College Majors by Median</a></li>
-				<li><a href="/grad_students/">Grad Students</a></li>
+				<li><a href="/major/major_category">College Majors by Category</a></li>
+				<li><a href="/major/median">College Majors by Median</a></li>
+				<li><a href="/major/p25th">College Majors by 25th Percentile</a></li>
 			</ul>
 		</div>
 	</div>
+
 
 	<div class="off-canvas-wrapper">
 		<div class="off-canvas-content" data-off-canvas-content>
@@ -58,14 +76,63 @@
 						<thead>
 							<tr>
 								<th>Value</th>
-								<the>Definition</the>
+								<th>Definition</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>
-									<code></code>
+									<code>Total</code>
 								</td>
+								<td>Total number of people that graduated with the major</td>
+							</tr>
+							<tr>
+								<td>
+									<code>Employed</code>
+								</td>
+								<td>Total number of those employed with their major</td>
+							</tr>
+							<tr>
+								<td>
+									<code>Unemployed</code>
+								</td>
+								<td>Total number of those unemployed with their major</td>
+							</tr>
+							<tr>
+								<td>
+									<code>Unemployed Rate</code>
+								</td>
+								<td>Total number of majors by those unemployed with their major</td>
+							</tr>
+							<tr>
+								<td>
+									<code>College Jobs</code>
+								</td>
+								<td>Total number of those working at a college with their major</td>
+							</tr>
+							<tr>
+								<td>
+									<code>Non College Jobs</code>
+								</td>
+								<td>Total number of those not working at a college with their major</td>
+							</tr>
+							<tr>
+								<td>
+									<code>Median</code>
+								</td>
+								<td>The median income of those with this major</td>
+							</tr>
+							<tr>
+								<td>
+									<code>P25th</code>
+								</td>
+								<td>This income is within the range of the 25th Percentile</td>
+							</tr>
+							<tr>
+								<td>
+									<code>P75th</code>
+								</td>
+								<td>This income is within the range of the 75th Percentile</td>
 							</tr>
 						</tbody>
 					</table>
@@ -73,6 +140,11 @@
 			</div> 
 		</div>
 	</div>
-
 </body>
+
+<script src="js/foundation.js"></script>
+<script src="application/javascript">
+	$(document).foundation();
+</script>
+
 </html>
