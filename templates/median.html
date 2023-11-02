@@ -1,1 +1,80 @@
+<!DOCTYPE html>
+<html lang ="us">
+    <head>
+        <title>Median Database</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="../css/foundation.css"/>
+    </head>
 
+
+    <body style="background-color: lightskyblue;">
+        <h2 style="color:black; font-weight:bold"> <a href="./temp.html"> Home Page </a> </h2><br><br><br>
+
+        <p style="font-family:Times;"> Please enter a median income you'd like to look at*: </p>
+            <input type="text" id="target" placeholder="Enter a median">
+            <input type="button" id="btn1" value="Submit">
+            <input type="button" id="home" value="Home">
+   
+            <script>
+                const btn1 = document.getElementById("btn1");
+                const txt1 = document.getElementById("target");
+                const home = document.getElementById("home");
+
+                function clicked(){
+                    const value = txt1.value;
+                    const formatted = value.charAt(0).toUpperCase()+ value.slice(1).toLowerCase();
+                    if(value==""){
+                        alert("Enter valid median")
+                    }else {
+
+                    window.location="/median/"+formatted;
+
+                    } 
+                }
+                function go_home(){
+                    window.location="./temp.html";
+                }
+                
+                home.addEventListener('click',go_home);
+                btn1.addEventListener('click',clicked);
+    
+            </script>
+        
+       <br>
+        <h1> $$MEDIAN$$ </h1>
+        <table>
+            <thead>
+                <tr>
+                    <th> Major Name </th>
+                    <th> Major Code </th>
+                    <th> Total </th>
+                    <th> Employed </th>
+                    <th> Unemployed </th>
+                    <th> Median </th>
+                </tr>
+
+            </thead>
+            <tbody>
+                $$TABLE_BODY$$
+            </tbody>        
+        </table>
+
+        <br><br><br><br>
+
+        <table style="border-style: dashed">
+        <p > *Some median incomes include: </p>
+        <ul>
+            <li> 35000 </li>
+            <li> 40000 </li>
+            <li> 62000 </li>
+            <li> 70000</li>
+            <li> 80000 </li>
+            <li> 125000 </li>
+        </ul>
+    </table>
+        
+
+
+    </body>
+</html>
