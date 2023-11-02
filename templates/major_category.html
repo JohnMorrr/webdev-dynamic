@@ -4,31 +4,41 @@
         <title>Majors Database</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="../css/foundation.css"/>
     </head>
 
 
     <body style="background-color: bisque;">
         <h2 style="color:blue; font-weight:bold"> <a href="./temp.html"> Home Page </a> </h2><br><br><br>
 
-        <p style="font-family:Times;"> Please enter a major category you'd like to look at: </p>
+        <p style="font-family:Times;"> Please enter a major category you'd like to look at*: </p>
             <input type="text" id="target" placeholder="Enter a category">
             <input type="button" id="btn1" value="Submit">
-
-        
+            <input type="button" id="home" value="Home">
+   
             <script>
                 const btn1 = document.getElementById("btn1");
                 const txt1 = document.getElementById("target");
+                const home = document.getElementById("home");
 
                 function clicked(){
-                    let value = txt1.value;
-                    window.location="/major_category/"+value;
-                    
+                    const value = txt1.value;
+                    const formatted = value.charAt(0).toUpperCase()+ value.slice(1).toLowerCase();
+                    if(value==""){
+                        alert("Enter valid category")
+                    }else {
+
+                    window.location="/major_category/"+formatted;
+
+                    } 
+                }
+                function go_home(){
+                    window.location="./temp.html";
                 }
                 
-                btn1.addEventListener('click',clicked())
-                
-                
+                home.addEventListener('click',go_home);
+                btn1.addEventListener('click',clicked);
+    
             </script>
         
        <br>
