@@ -74,25 +74,23 @@ app.get('/major_category/:category', (req, res) => {
   });
 */
 
-/* Brian Do's dynamic route
-app.get('/major/:median', (req, res) => {
-    let major = req.params.major;
+/* Brian Do's dynamic route */
+app.get('/median/:median', (req, res) => {
+    let median = req.params.median;
 
-    let prom1 = dbSelect('SELECT * FROM MAJORS_LIST WHERE median = ?', [major.toUpperCase()]);
-    let prom2 = dbSelect('SELECT * FROM ALL_AGES WHERE major=?', [major.toUpperCase()]);
-    let prom3 = fs.promises.readFile(path.join(template, 'median.html'), 'utf-8');
-    Promise.all([prom1, prom2, prom3]).then((results) => {
-        let response = results[2].replace('$$MEDIAN$$', results[1][0].major);
+    let prom1 = dbSelect('SELECT * FROM ALL_AGES WHERE median=?', [median]);
+    let prom2 = fs.promises.readFile(path.join(template, 'median.html'), 'utf-8');
+    Promise.all([prom1, prom2]).then((results) => {
+        let response = results[1].replace('$$MEDIAN$$', results[0][0].median);
         let table_body = '';
-        results[1].forEach((major, index) => {
+        results[0].forEach((median, index) => {
             let table_row = '<tr>';
-            table_row += '<td>' + major.major + '<td>';
-            table_row += '<td>' + major.major_category + '<td>';
-            table_row += '<td>' + major.total + '<td>';
-            table_row += '<td>' + major.employed + '<td>';
-            table_row += '<td>' + major.unemployed + '<td>';
-            table_row += '<td>' + major.unemployed_rate + '<td>';
-            table_row += '<td>' + major.median + '<td>';
+            table_row += '<td>' + median.major;
+            table_row += '<td>' + median.major_category;
+            table_row += '<td>' + median.total;
+            table_row += '<td>' + median.employed;
+            table_row += '<td>' + median.unemployed;
+            table_row += '<td>' + median.median;
 
             table_row += '<tr>';
             table_body += table_row;
@@ -102,10 +100,9 @@ app.get('/major/:median', (req, res) => {
         res.status(200).type('html').send(response);
 
     }).catch((error) => {
-        res.status(400).type('txt').send(`404 Error: Major Not Found: '${major}' `);
+        res.status(400).type('txt').send(`404 Error: Median Not Found: '${median}' `);
     });
 });
-*/
 
 app.listen(port, () => {
     console.log('Now listening on port ' + port);
