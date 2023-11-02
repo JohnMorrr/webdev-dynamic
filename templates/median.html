@@ -7,6 +7,33 @@
         <link rel="stylesheet" href="../css/foundation.css"/>
     </head>
 
+        <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+    </style>
 
     <body style="background-color: lightskyblue;">
         <h2 style="color:black; font-weight:bold"> <a href="./temp.html"> Home Page </a> </h2><br><br><br>
@@ -41,19 +68,18 @@
     
             </script>
         
-       <br>
+        <br>
         <h1> $$MEDIAN$$ </h1>
         <table>
-            <thead>
+            <thead> 
                 <tr>
                     <th> Major Name </th>
-                    <th> Major Code </th>
+                    <th> Major Category </th>
                     <th> Total </th>
                     <th> Employed </th>
                     <th> Unemployed </th>
                     <th> Median </th>
                 </tr>
-
             </thead>
             <tbody>
                 $$TABLE_BODY$$
