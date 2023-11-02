@@ -11,7 +11,7 @@ const port = 8000;
 const root = path.join(__dirname, 'public');
 const template = path.join(__dirname, 'templates');
 
-const db = new sqlite3.Database(path.join(__dirname, 'college_majors.sqlite3'), sqlite3.OPEN_READONLY,(err)=> {
+const db = new sqlite3.Database(path.join(__dirname, 'assignment2.sqlite3'), sqlite3.OPEN_READONLY,(err)=> {
     if (err){
         console.log('Error connecting to database');
     }
@@ -37,11 +37,14 @@ let app = express();
 app.use(express.static(root));
 
 
-
-/*  John Morrison's dynamic route
-
+//John Morrison's Dynamic Route
 app.get('/major_category/:category', (req, res) => { 
     let cat  = req.params.category;
+    if(cat=="Biology"){
+      cat = "Biology & Life Science";
+    }else if(cat=="CompSci"){
+      cat = "Computers & Mathematics";
+    }
 
   
     let prom1 = dbSelect('SELECT * FROM recent_grads WHERE  major_category = ?', [cat]);
@@ -72,7 +75,8 @@ app.get('/major_category/:category', (req, res) => {
       res.status(404).type('txt').send(`404 Error: Major Category Not Found '${cat}' `);
     });
   });
-*/
+
+
 
 /* Brian Do's dynamic route */
 app.get('/median/:median', (req, res) => {

@@ -9,17 +9,16 @@
 
 
     <body style="background-color: bisque;">
-        <h2 style="color:blue; font-weight:bold"> <a href="./temp.html"> Home Page </a> </h2><br><br><br>
+        <h2 style="color:blue; font-weight:bold"> <a href="../index.html"> Return Home </a> </h2><br>
 
         <p style="font-family:Times;"> Please enter a major category you'd like to look at*: </p>
             <input type="text" id="target" placeholder="Enter a category">
-            <input type="button" id="btn1" value="Submit">
-            <input type="button" id="home" value="Home">
+            <input type="button" id="btn1" value="Search">
+            
    
             <script>
                 const btn1 = document.getElementById("btn1");
                 const txt1 = document.getElementById("target");
-                const home = document.getElementById("home");
 
                 function clicked(){
                     const value = txt1.value;
@@ -28,30 +27,27 @@
                         alert("Enter valid category")
                     }else {
 
-                    window.location="/major_category/"+formatted;
+                    window.location="/major_category/"+value;
 
                     } 
                 }
-                function go_home(){
-                    window.location="./temp.html";
-                }
-                
-                home.addEventListener('click',go_home);
                 btn1.addEventListener('click',clicked);
     
             </script>
         
+
+            <!--  <img src="$$image.img$$" alt="picture" />    replace with url of image -->
        <br>
         <h1> $$MAJOR_CATEGORY$$ </h1>
         <table>
             <thead>
                 <tr>
-                    <th> Major Name </th>
-                    <th> Major Code </th>
-                    <th> Employed </th>
-                    <th> Unemployed </th>
-                    <th> College Jobs </th>
-                    <th> Non-College Jobs </th>
+                    <th> Major Name &nbsp   </th>
+                    <th> Major Code  &nbsp  </th>
+                    <th> Employed  &nbsp   </th>
+                    <th> Unemployed  &nbsp </th>
+                    <th> College Jobs  &nbsp  </th>
+                    <th> Non-College Jobs &nbsp   </th>
                 </tr>
 
             </thead>
@@ -69,10 +65,10 @@
             <li> Business </li>
             <li> Physical Sciences </li>
             <li> Arts </li>
-            <li> Computers &amp Mathematics </li>
+            <li> CompSci</li>
             <li> Engineering </li>
             <li> Education </li>
-            <li> Biology & Life Science </li>
+            <li> Biology </li>
             
         </ul>
     </table>
