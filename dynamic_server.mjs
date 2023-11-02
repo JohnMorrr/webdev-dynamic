@@ -40,33 +40,36 @@ app.use(express.static(root));
 
 /*  John Morrison's dynamic route
 
-app.get('/major/:major_category', (req, res) => { 
-    let major  = req.params.major;
+app.get('/major_category/:category', (req, res) => { 
+    let cat  = req.params.category;
+
   
-    let prom1 = dbSelect('SELECT * FROM MAJORS_LIST WHERE  major_category = ?', [major.toUpperCase()]);
-    let prom2 = dbSelect('SELECT * FROM RECENT_GRADS WHERE major=?', [major.toUpperCase()]);
+    let prom1 = dbSelect('SELECT * FROM recent_grads WHERE  major_category = ?', [cat]);
+    let prom2 = dbSelect('SELECT * FROM all_ages WHERE  major_category = ?', [cat]);
     let prom3 = fs.promises.readFile(path.join(template, 'major_category.html'), 'utf-8');
     Promise.all([prom1,prom2,prom3]).then((results) => {
-      let response = results[2].replace('$$MAJOR_CATEGORY$$',results[1][0].major);  // results[2] = index where p3 is, results[1] is index where p2 is in Promise.all() list
+      let response = results[2].replace('$$MAJOR_CATEGORY$$',cat);  // results[2] = index where p3 is, results[1] is index where p2 is in Promise.all() list
       let table_body = '';
       results[0].forEach((major, index) =>{
           let table_row = '<tr>';
           table_row += '<td>' + major.major + '</td>';
-          table_row += '<td>' +major.employed + '</td>';
-          table_row += '<td>' + major.unemployed + '</td>';
-          table_row += '<td>' + major.unemployed_rate+ '</td>';
+          table_row += '<td>' +major.major_code + '</td>';
+          table_row += '<td>' + major.employed + '</td>';
+          table_row += '<td>' + major.unemployed+ '</td>';
           table_row += '<td>' + major.college_jobs; + '</td>';
           table_row += '<td>' + major.non_college_jobs + '</td>';
-  
           table_row += '</tr>';
           table_body += table_row;
       });
+      if(table_body==''){
+        alert(`404 Error: Major Category Not Found: '${cat}' `);
+      }
       response = response.replace('$$TABLE_BODY$$', table_body);
   
       res.status(200).type('html').send(response);
   
     }).catch((error)=>{
-      res.status(400).type('txt').send(`404 Error: Major Not Found: '${major}' `);
+      res.status(404).type('txt').send(`404 Error: Major Category Not Found '${cat}' `);
     });
   });
 */
