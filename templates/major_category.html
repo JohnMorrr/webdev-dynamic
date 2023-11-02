@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang ="us">
+    <head>
+        <title>Majors Database</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="../css/style.css"/>
+    </head>
+
+
+    <body style="background-color: bisque;">
+        <h2 style="color:blue; font-weight:bold"> <a href="./temp.html"> Home Page </a> </h2><br><br><br>
+
+        <p style="font-family:Times;"> Please enter a major category you'd like to look at: </p>
+            <input type="text" id="target" placeholder="Enter a category">
+            <input type="button" id="btn1" value="Submit">
+
+        
+            <script>
+                const btn1 = document.getElementById("btn1");
+                const txt1 = document.getElementById("target");
+
+                function clicked(){
+                    let value = txt1.value;
+                    window.location="/major_category/"+value;
+                    
+                }
+                
+                btn1.addEventListener('click',clicked())
+                
+                
+            </script>
+        
+       <br>
+        <h1> $$MAJOR_CATEGORY$$ </h1>
+        <table>
+            <thead>
+                <tr>
+                    <th> Major Name </th>
+                    <th> Major Code </th>
+                    <th> Employed </th>
+                    <th> Unemployed </th>
+                    <th> College Jobs </th>
+                    <th> Non-College Jobs </th>
+                </tr>
+
+            </thead>
+            <tbody>
+                $$TABLE_BODY$$
+            </tbody>        
+        </table>
+
+        <br><br><br><br>
+
+        <table style="border-style: dashed">
+        <p > *Some major categories include: </p>
+        <ul>
+            <li> Health </li>
+            <li> Business </li>
+            <li> Physical Sciences </li>
+            <li> Arts </li>
+            <li> Computers &amp Mathematics </li>
+            <li> Engineering </li>
+            <li> Education </li>
+            <li> Biology & Life Science </li>
+            
+        </ul>
+    </table>
+        
+
+
+    </body>
+</html>
