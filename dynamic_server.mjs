@@ -36,6 +36,66 @@ function dbSelect(query,params){
 let app = express();
 app.use(express.static(root));
 
+//Gullet's Dynamic Route
+app.get('/p25th.html', (req, res) => { 
+    let number  = req.params.number;
+  
+    let prom1 = dbSelect('SELECT * FROM ALL_AGES ORDER BY p25th ASC');
+    let prom2 = fs.promises.readFile(path.join(template, 'percent.html'), 'utf-8');
+    Promise.all([prom1,prom2]).then((results) => {
+        let response = results[1].replace('$$P25TH$$');     
+      let table_body = '';
+      results[0].forEach((number, index) =>{
+          let table_row = '<tr>';
+          table_row += '<td>' + number.major + '</td>';
+          table_row += '<td>' +number.employed + '</td>';
+          table_row += '<td>' + number.unemployed + '</td>';
+          table_row += '<td>' + number.unemployed_rate+ '</td>';
+          table_row += '<td>' + number.median; + '</td>';
+          table_row += '<td>' + number.p25th + '</td>';
+  
+          table_row += '</tr>';
+          table_body += table_row;
+      });
+      response = response.replace('$$TABLE_BODY$$', table_body);
+  
+      res.status(200).type('html').send(response);
+  
+    }).catch((error)=>{
+      res.status(400).type('txt').send(`404 Error: number Not Found: '${number}' `);
+    });
+  });
+
+
+app.get('/p25th/:number', (req, res) => {
+    let number = req.params.number;
+
+    let prom1 = dbSelect('SELECT * FROM ALL_AGES WHERE p25th = ? ORDER BY p25th ASC', [number.toUpperCase()]);
+    let prom2 = fs.promises.readFile(path.join(template, 'percent.html'), 'utf-8');
+    Promise.all([prom1,prom2]).then((results) => {
+        let response = results[1].replace('$$P25TH$$', results[0][0].number);        // results[2] = index where p3 is, results[1] is index where p2 is in Promise.all() list
+      let table_body = '';
+      results[0].forEach((number, index) =>{
+          let table_row = '<tr>';
+          table_row += '<td>' + number.major + '</td>';
+          table_row += '<td>' +number.employed + '</td>';
+          table_row += '<td>' + number.unemployed + '</td>';
+          table_row += '<td>' + number.unemployed_rate+ '</td>';
+          table_row += '<td>' + number.median; + '</td>';
+          table_row += '<td>' + number.p25th + '</td>';
+  
+          table_row += '</tr>';
+          table_body += table_row;
+      });
+      response = response.replace('$$TABLE_BODY$$', table_body);
+  
+      res.status(200).type('html').send(response);
+  
+    }).catch((error)=>{
+      res.status(400).type('txt').send(`404 Error: Number Not Found: '${number}' `);
+    });
+  });
+
 
 //John Morrison's Dynamic Route
 //John Morrison's Dynamic Route
