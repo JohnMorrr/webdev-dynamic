@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="us">
+<head>
+    <title>25th Percentile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/foundation.css" />
+    
+</head>
+
+<style>
+    .table-scroll {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: right;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #333;
+        color: white;
+    }
+
+    table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+</style>
+
+<body style="background-color: rgb(250, 135, 156);">
+    <h2 style="color: black; font-weight: bold"> <a href="../index.html"> Return Home </a> </h2>
+    <br><br><br>
+    <div class="grid-container">
+        <h1 class="cell">P25TH</h1>
+        <p class="cell" style="font-family: Times;">Please enter a percentile number you'd like to look at*:</p>
+        <div class="cell input-group">
+            <input type="text" id="target" placeholder="Enter a percentile number">
+            <div class="input-group-button">
+                <input type="button" id="btn1" value="Submit" class="button">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btn1 = document.getElementById("btn1");
+        const txt1 = document.getElementById("target");
+
+        function clicked() {
+            const value = txt1.value;
+            const formatted = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+            if (value == "") {
+                alert("Enter a valid percentile");
+            } else {
+                window.location = "/p25th/" + formatted;
+            }
+        }
+
+        btn1.addEventListener('click', clicked);
+    </script>
+
+    <br>
+
+    
+    <div class="grid-container">
+        <div class="table-scroll cell">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Major</th>
+                        <th>Employed</th>
+                        <th>Unemployed</th>
+                        <th>Unemployed Rate</th>
+                        <th>Median</th>
+                        <th>P25TH</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    $$TABLE_BODY$$
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br><br><br><br>
+    <div class="grid-container">
+        <div class="grid-x">
+            <div class="cell small-12 medium-6">
+                <a onclick="history.back()" class="button">Back to Previous Page</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
